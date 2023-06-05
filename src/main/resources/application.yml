@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: costomer-platform
+  datasource:
+    url: jdbc:mysql://localhost:3306/customer?useUnicode=true&characterEncoding=utf8
+    username: root
+    password: 123456
+
+
+server:
+  port: 7050
+  servlet:
+    context-path: /api
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: false
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    tags-sorter: alpha
+    operations-sorter: alpha
+  api-docs:
+    path: /v3/api-docs
+  group-configs:
+    - group: 'default'
+      paths-to-match: '/**'
+      packages-to-scan: com.flamingo.customer.controller

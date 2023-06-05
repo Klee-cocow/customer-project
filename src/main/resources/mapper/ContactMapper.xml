@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.flamingo.customer.mapper.ContactMapper">
+
+    <resultMap id="BaseResultMap" type="com.flamingo.customer.model.domain.Contact">
+            <id property="cid" column="cid" jdbcType="INTEGER"/>
+            <result property="cname" column="cname" jdbcType="VARCHAR"/>
+            <result property="cphone" column="cphone" jdbcType="VARCHAR"/>
+            <result property="cgender" column="cgender" jdbcType="INTEGER"/>
+            <result property="cemail" column="cemail" jdbcType="VARCHAR"/>
+            <result property="caddress" column="caddress" jdbcType="VARCHAR"/>
+            <result property="customer_id" column="customer_id" jdbcType="BIGINT"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        cid,cname,cphone,
+        cgender,cemail,caddress,
+        customer_id
+    </sql>
+
+
+    <select id="selectContactLeftCustomer" resultType="com.flamingo.customer.model.vo.ContactJoinCustomerVO">
+        select cid,cname,cphone,cgender,cemail,caddress,
+                id,name,phone,gender,email,address
+        from contact con left join customer cus on con.customer_id = cus.id
+    </select>
+</mapper>
